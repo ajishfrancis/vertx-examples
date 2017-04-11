@@ -14,7 +14,11 @@ ENV VERTICLE_NAME hello-verticle.js
 
 # Set the location of the verticles         <3>
 ENV VERTICLE_HOME /usr/verticles
+ENV HAWKULAR_APM_VERSION 0.9.0.Final
 
+ADD https://github.com/hawkular/hawkular-apm/releases/download/$HAWKULAR_APM_VERSION/hawkular-apm-agent.jar hawkular-apm-agent.jar
+
+ENV JAVA_OPTS -javaagent:/hawkular-apm-agent.jar
 EXPOSE 8080
 
 # Copy your verticle to the container       <4>
